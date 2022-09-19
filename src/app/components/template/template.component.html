@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="py-4 text-center">
+        <h2>
+            <img class="mb-4" src="assets/logo.png" style="height:3em" alt="Unified Post">
+            Commit Message Generator
+        </h2>
+        <div class="lead">
+            <p>Fill in the values below and generate the commit messages</p>
+        </div>
+    </div>
+  
+    <div class='row'>
+        <div class="col-sm">
+            <div>
+                <select class="w-100 form-select form-select-lg form-control-lg mb-3" id="type">
+                <option value="">Type...</option>
+                <option value="feat">new feature</option>
+                <option value="fix">bug fix</option>
+                <option value="refactor">refactoring code</option>
+                <option value="perf">performance improvements</option>
+                <option value="sec">security improvements</option>
+                <option value="style">formatting, code style</option>
+                <option value="docs">changes to documentation</option>
+                <option value="test">adding or refactoring tests</option>
+                <option value="chore">updating tasks, configuration</option>
+                <option value="i18n">translation</option>
+                <option value="init">begin a project</option>
+                </select>
+            </div>
+            <div class="py-4">
+                <input type="text" class="w-100 form-control form-control-lg" id="subject" placeholder="Subject" maxlength="50"/>
+            </div>
+            <div class="py-4">
+                <textarea rows="5" class="w-100 form-control form-control-lg" id="description" placeholder="Description"></textarea>
+            </div>
+            <div class="py-4">
+                <textarea rows="5" class="w-100 form-control form-control-lg" id="extras" placeholder="Extra's"></textarea>
+            </div>
+        </div>
+        <div *ngIf="Type || Subject || Description || Extras" class="col-sm alert {{isValid ? 'alert-success' : 'alert-danger'}}">
+            <span *ngIf="TypeName">{{TypeName}}</span>&nbsp;<span *ngIf="Subject">{{Subject}}</span>
+            <div *ngIf="Description">
+                <br />
+                <pre>{{Description}}</pre>
+            </div>
+            <div *ngIf="Extras">
+                <br />
+                <pre>{{Extras}}</pre>
+            </div>
+        </div>
+        <div [ngClass]="!(Type || Subject || Description || Extras) ? 'col-sm': ''" class="alert alert-primary">
+            <pre>
+&lt;type&gt;: (If applied, this commit will...) &lt;subject&gt; (Max 50 char)
+|&lt;----  Using a Maximum Of 50 Characters  ----&gt;|
+
+
+Explain why this change is being made
+|&lt;----   Try To Limit Each Line to a Maximum Of 72 Characters   ----&gt;|
+
+Provide links to any relevant tickets, articles or other resources
+
+----------------------------- COMMIT END -----------------------------
+Type can be
+    :sparkles:         feat     (new feature)
+    :bug:              fix      (bug fix)
+    :hammer:           refactor (refactoring code)
+    :racehorse:        perf     (performance improvements)
+    :lock:             sec      (security improvements)
+    :art:              style    (formatting, code style)
+    :books:            docs     (changes to documentation)
+    :white_check_mark: test     (adding or refactoring tests)
+    :wrench:           chore    (updating tasks, configuration)
+    :speech_balloon:   i18n     (translation)
+    :tada:             init     (begin a project)
+----------------------------------------------------------------------
+Remember to
+    Capitalize the subject line
+    Use the imperative mood in the subject line
+    Do not end the subject line with a period
+    Separate subject from body with a blank line
+    Use the body to explain what and why vs. how
+    Can use multiple lines with &quot;-&quot; for bullet points in body
+----------------------------------------------------------------------
+            </pre>
+        </div>
+    </div>
+  </div>
