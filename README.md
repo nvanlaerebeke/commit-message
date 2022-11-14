@@ -1,27 +1,103 @@
-# GitCommitTemplate
+# Commit Message
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
+One page application that generates git commit messages based on the best practices
 
-## Development server
+## Resources
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+| | |
+|---|---|
+| GitHub | [https://github.com/nvanlaerebeke/commit-message](https://github.com/nvanlaerebeke/commit-message)
+| Public website | [https://commit.crazytje.com](https://commit.crazytje.com)
+| Docker hub | https://hub.docker.com/r/crazytje/commit-message
+| Helm chart example | [https://github.com/nvanlaerebeke/crazytje/tree/main/applications/charts/commit-message](https://github.com/nvanlaerebeke/crazytje/tree/main/applications/charts/commit-message)
+---
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Best practices used 
 
-## Build
+The 'rules' followed are as follows:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- The subject starts with an icon describing the type of commit  
+This can be for example a "bug" or "feature" etc
+- The subject text is maximum 50 characters
+- The subject line is automatically capitalized.
+- Make sure to use the imperative mood in the subject line
+- Do not end the subject line with a period
+- A description with a max line length of 72 characters per line
+- Extra/other resources like links to external resources or references
+- Use the body to explain what and why vs. how  
+- Can use multiple lines with "-" for bullet points in body
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Icons
 
-## Running end-to-end tests
+Icon selection for the commit type can be:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The pre-pended icon can be selected from the following:
 
-## Further help
+|   |   |   |
+|---|---|---|
+| :sparkles:            | feat      | (new feature) |
+| :bug:                 | fix       | (bug fix) |
+| :hammer:              | refactor  | (refactoring code) |
+| :racehorse:           | perf      | (performance improvements) |
+| :lock:                | sec       | (security improvements) |
+| :art:                 | style     | (formatting, code style) |
+| :books:               | docs      | (changes to documentation) |
+| :white_check_mark:    | test      | (adding or refactoring tests) |
+| :wrench:              | chore     | (updating tasks, configuration) |
+| :speech_balloon:      | i18n      | (translation) |
+| :tada:                | init      | (begin a project) |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Building
+
+To build a `Makefile` is included, run:
+
+```
+make build
+```
+
+Or manual:
+
+```
+docker build -t commit-message .
+```
+
+## Run the container
+
+The containers exposes port 80, run the following docker command to run the commit-message container:
+
+```
+docker run --rm -ti -p 80:80 crazytje/commit-message 
+```
+
+## Kubernetes deployment
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: commit-message
+  name: commit-message
+spec:
+  selector:
+    matchLabels:
+      app: commit-message
+  template:
+    metadata:
+      labels:
+        app: commit-message
+    spec:
+      containers:
+      - image: crazytje/commit-message:latest
+        name: commit-message
+        ports:
+        - containerPort: 80
+          name: commit-message    
+```
+
+An example helm chart with ingress and tls can be found here:
+
+[https://github.com/nvanlaerebeke/crazytje/tree/main/applications/charts/commit-message](https://github.com/nvanlaerebeke/crazytje/tree/main/applications/charts/commit-message)
