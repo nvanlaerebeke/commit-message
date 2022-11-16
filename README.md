@@ -101,3 +101,12 @@ spec:
 An example helm chart with ingress and tls can be found here:
 
 [https://github.com/nvanlaerebeke/crazytje/tree/main/applications/charts/commit-message](https://github.com/nvanlaerebeke/crazytje/tree/main/applications/charts/commit-message)
+
+## Development
+
+To run the project locally and not in a container:
+
+1. ng build
+2. ng serve
+
+Visit [http://localhost:4200])(http://localhost:4200)

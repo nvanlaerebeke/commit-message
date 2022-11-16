@@ -38,14 +38,19 @@
             </div>
         </div>
         <div *ngIf="Type || Subject || Description || Extras" class="col-sm alert {{isValid ? 'alert-success' : 'alert-danger'}}">
-            <span *ngIf="TypeName">{{TypeName}}</span>&nbsp;<span *ngIf="Subject">{{Subject}}</span>
-            <div *ngIf="Description">
-                <br />
-                <pre>{{Description}}</pre>
+            <div id="commitMessage">
+                <span *ngIf="TypeName">{{TypeName}}</span>&nbsp;<span *ngIf="Subject">{{Subject}}</span>
+                <div *ngIf="Description">
+                    <br />
+                    <pre>{{Description}}</pre>
+                </div>
+                <div *ngIf="Extras">
+                    <br />
+                    <pre>{{Extras}}</pre>
+                </div>
             </div>
-            <div *ngIf="Extras">
-                <br />
-                <pre>{{Extras}}</pre>
+            <div style="position: absolute; text-align: right; right: 1em; bottom: 5px; width: 100%;">
+                <button mat-stroked-button color="primary" (click)="copyToClipboard();">Copy to Clipboard</button>
             </div>
         </div>
         <div [ngClass]="!(Type || Subject || Description || Extras) ? 'col-sm': ''" class="alert alert-primary">
