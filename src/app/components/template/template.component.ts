@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { __values } from 'tslib';
 import {Clipboard} from '@angular/cdk/clipboard';
-import { never } from 'rxjs';
 
 @Component({
   selector: 'app-template',
