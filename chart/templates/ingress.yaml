@@ -7,7 +7,7 @@ metadata:
       kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
-    - secretName: {{ .Values.tlssecret | quote }}
+    - secretName: {{ .Values.ingress.tls.existingSecret | quote }}
       hosts:
 {{- range $hostname := .Values.hostname }}
       - {{ $hostname }}
