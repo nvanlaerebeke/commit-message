@@ -1,0 +1,16 @@
+name: commit-message
+global:
+  registry: harbor.crazyzone.be/crazyzone
+  image: commit-message
+  tag: latest
+  #Use an existing secret for your registry
+  #existingRegisrySecret: ""
+resources:
+  replicaCount: 1
+hostnames:
+  - commit.crazytje.be
+  - commit.crazytje.com
+ingress:
+  enabled: true
+  tls:
+    existingSecret: secret-tls
