@@ -110,11 +110,13 @@ export class TemplateComponent implements OnInit {
     }
    
     if(this.Description) {
-      this.Description = this.Description.replace(/.{72}/g, '$&\n');
+      this.Description = this.wrap(this.Description, 72);
+      //this.Description = this.Description.replace(/.{72}/g, '$&\n');
     }
 
     if(this.Extras) {
-      this.Extras = this.Extras.replace(/.{72}/g, '$&\n');
+      //this.Extras = this.Extras.replace(/.{72}/g, '$&\n');
+      this.Extras = this.wrap(this.Extras, 72);
     }
 
     if(this.Type && this.Subject) {
@@ -161,5 +163,9 @@ export class TemplateComponent implements OnInit {
     parseChildNodesForValueAndLines(document.getElementById("commitMessage")!.childNodes);
 
     return newValue;
+  }
+
+  private wrap(s: string, w: Number) : string {
+    return s.replace(new RegExp(`(?![^\\n]{1,${w}}$)([^\\n]{1,${w}})\\s`, 'g'), '$1\n');
   }
 }
